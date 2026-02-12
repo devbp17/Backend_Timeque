@@ -7,6 +7,7 @@ const adminMiddleware = require('./authmiddleware/adminMiddleware');
 const authMiddleware = require('./authmiddleware/authMiddleware');
 const User = require('./models/authUser');
 const AuthLimit = require('./ratelimit');
+const schedule = require('./routes/schedule');
 const app = express();
 app.use(cors());
 connectDB();
@@ -35,6 +36,9 @@ app.delete("/delete/:id", authMiddleware, adminMiddleware, async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
 });
+
+app.use('/schedule', authMiddleware, schedule);
+
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 })
