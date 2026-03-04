@@ -1,4 +1,3 @@
-// models/schedule.js
 const mongoose = require('mongoose');
 
 const scheduleSchema = new mongoose.Schema({
@@ -18,6 +17,7 @@ const scheduleSchema = new mongoose.Schema({
     type: Date,
     required: true
   }
-}, { timestamps: true });
+},
+  { timestamps: true });
 
 module.exports = mongoose.model('Schedule', scheduleSchema);

@@ -33,12 +33,16 @@ router.post('/login', async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ error: 'invalid credentials' });
     }
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {expiresIn: '1h'});
+    const token = jwt.sign({ id: user._id, role: user.role, name: user.name }, process.env.JWT_SECRET, {expiresIn: '1h'});
     res.status(200).json({ message: 'user logged in succesfullt', token });
   } catch (err) {
     console.error('Login ERROR:', err);
     res.status(500).json({ error: 'internal server error' });
   }
 });
+
+router.post('/logout', async (req, res) => {
+
+})
 
 module.exports = router;
