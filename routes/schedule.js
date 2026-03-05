@@ -22,7 +22,6 @@ router.get('/GetSchedule', async (req, res) => {
   try {
     const schedules = await Schedule.find({ user: req.user.id })
       .sort({ date: 1 });
-
     res.status(200).json(schedules);
   } catch (error) {
     res.status(400).json({ error: error.message });
