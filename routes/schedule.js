@@ -28,4 +28,16 @@ router.get('/GetSchedule', async (req, res) => {
   }
 });
 
+router.delete('/Delete/:id', async (req, res) => {
+  try {
+    const schedule = await Schedule.findByIdAndDelete(req.params.id);
+    if (!schedule) {
+      return res.status(404).json({ error: 'Schedule not found' });
+    }
+    res.status(200).json(schedule);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;
